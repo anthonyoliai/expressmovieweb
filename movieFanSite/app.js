@@ -16,6 +16,11 @@ app.use(
       directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
         'img-src': ["'self'", 'image.tmdb.org/t/p/w300/'],
+        'script-src': [
+          "'self",
+          'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
+          'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+        ],
       },
     },
   })
