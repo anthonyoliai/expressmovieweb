@@ -4,6 +4,9 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 
+const passport = require('passport')
+const GitHubStrategy = require('passport-github')
+
 var indexRouter = require('./routes/index')
 
 var app = express()
@@ -24,6 +27,16 @@ app.use(
       },
     },
   })
+)
+
+const passportConfig = require('./config')
+passport.use(
+  new GitHubStrategy(
+    passportConfig,
+    function (accessToken, refreshToken, profile, cb) {
+      console.log(profile)
+    }
+  )
 )
 
 // view engine setup
