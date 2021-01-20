@@ -25,6 +25,14 @@ router.get('/', function (req, res, next) {
 
 router.get('/login', passport.authenticate('github'))
 
+router.get(
+  '/auth',
+  passport.authenticate('github', {
+    successRedirect: '/',
+    failureRedirect: '/loginFailed',
+  })
+)
+
 router.get('/movie/:id', (req, res, next) => {
   const movieId = req.params.id
   const thisMovieUrl = `${apiBaseUrl}/movie/${movieId}?api_key=${apiKey}`
